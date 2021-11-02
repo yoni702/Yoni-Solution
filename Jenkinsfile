@@ -29,7 +29,6 @@ node (label: 'slave'){
     } 
 
     stage('4 - Build new image based on nginx image') {
-        # build the new image
         sh 'docker build -t yoni_site:"${commit_id}" .'
     
     }  
