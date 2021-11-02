@@ -1,4 +1,4 @@
-node (label: 'slave'){
+node {
     stage('1 - create 10 files with text') {
         for (int i = 1; i < 11; i++) {
             writeFile file: "file${i}.txt", text: "Random sample text."
