@@ -29,12 +29,12 @@ node (label: 'slave'){
     } 
 
     stage('4 - Build new image based on nginx image') {
-        sh 'docker build -t yoni_site:"${commit_id}" .'
+        sh 'docker build -t yoni_site .'
     
     }  
 
     stage('5 - Run container with mounted directory with files from Stage 3') {
-        sh 'docker run -d -p 80:80  yoni_site:"${commit_id}"'
+        sh 'docker run -d -p 80:80  yoni_site"'
     } 
 
 }
