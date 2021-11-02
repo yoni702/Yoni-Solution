@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-node {
+node (label: 'slave'){
     def commit_id
     stage('Prepare') {
         git 'https://github.com/yoni702/Yoni-Solution.git'
