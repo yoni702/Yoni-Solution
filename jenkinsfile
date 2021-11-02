@@ -1,0 +1,31 @@
+node (label: 'slave'){
+    stage('1 - create 10 files with text') {
+        for (int i = 1; i < 11; i++) {
+            writeFile file: "File${i}.txt", text: "Random sample text."
+        }
+    }
+    
+    stage('2 - insert time, date, time zone, to the files') {
+        d = new Date()
+        String stage2 = "\nTime: ${d.format("HH:mm:ss")} \nDate: ${d.format("dd/MM/yyy")}  \nTimeZone: ${d.format("zzz")}"
+        for (int i = 1; i < 11; i++) {
+            sh "echo '${stage2}' >> File${i}.txt"
+        }
+    }
+    
+    //drrrrr
+    stage('3 - make those files read-only') {
+        sh 'for f in *.txt;do chmod 444 ${f}; done'
+    } 
+
+    stage('4 - Build new image based on nginx image') {
+        sh """
+            docker build -t yoni_site .
+            docker run -- rm yoni_site
+        """
+    }  
+
+    stage('5 - Run container with mounted directory with files from Stage 3') {
+        sh 'npm install'
+    } 
+}
