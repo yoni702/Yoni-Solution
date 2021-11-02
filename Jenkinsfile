@@ -34,7 +34,7 @@ node (label: 'slave'){
     }  
 
     stage('5 - Run container with mounted directory with files from Stage 3') {
-        sh 'docker run -d -p 80:80  yoni_site"'
+        sh 'docker run -d -p 80:80  yoni_site'
     } 
 
 }
