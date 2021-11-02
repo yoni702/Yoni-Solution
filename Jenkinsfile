@@ -8,6 +8,8 @@ node (label: 'slave'){
     }
     
     stage('1 - create 10 files with text') {
+        sh 'sudo rm -rf text-files/'
+        sh 'sudo mkdir text-files'
         for (int i = 1; i < 11; i++) {
             writeFile file: "text-files/file${i}.txt", text: "Random sample text."
         }
@@ -30,6 +32,8 @@ node (label: 'slave'){
     }  
 
     stage('5 - Run container with mounted directory with files from Stage 3') {
+        sh 'docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
         sh 'docker run -d -p 80:80  yoni_site'
     } 
+
 }
