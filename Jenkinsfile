@@ -5,7 +5,7 @@ node {
         git 'https://github.com/yoni702/Yoni-Solution.git'
         sh "git rev-parse --short HEAD > .git/commit-id"
         commit_id = readFile('.git/commit-id')
-    
+    }
     
     stage('1 - create 10 files with text') {
         for (int i = 1; i < 11; i++) {
