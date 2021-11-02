@@ -9,7 +9,7 @@ node (label: 'slave'){
     
     stage('1 - create 10 files with text') {
         for (int i = 1; i < 11; i++) {
-            writeFile file: "file${i}.txt", text: "Random sample text."
+            writeFile file: "text-files/file${i}.txt", text: "Random sample text."
         }
     }
     
@@ -17,12 +17,12 @@ node (label: 'slave'){
         d = new Date()
         String stage2 = "\nTime: ${d.format("HH:mm:ss")} \nDate: ${d.format("dd/MM/yyy")}  \nTimeZone: ${d.format("zzz")}"
         for (int i = 1; i < 11; i++) {
-            sh "echo '${stage2}' >> file${i}.txt"
+            sh "echo '${stage2}' >> text-files/file${i}.txt"
         }
     }
 
     stage('3 - make those files read-only') {
-        sh 'for f in *.txt;do chmod 444 ${f}; done'
+        sh 'for f in text-files/*.txt;do chmod 444 ${f}; done'
     } 
 
     stage('4 - Build new image based on nginx image') {
@@ -30,6 +30,6 @@ node (label: 'slave'){
     }  
 
     stage('5 - Run container with mounted directory with files from Stage 3') {
-        sh 'docker run -- rm yoni_site'
+        sh 'docker run -d -p 80:80  yoni_site'
     } 
 }
