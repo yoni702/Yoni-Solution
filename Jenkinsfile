@@ -29,12 +29,13 @@ node (label: 'slave'){
     } 
 
     stage('4 - Build new image based on nginx image') {
-        sh 'docker build -t yoni_site .'
+        # build the new image
+        sh 'docker build -t yoni_site:"${commit_id}" .'
+    
     }  
 
     stage('5 - Run container with mounted directory with files from Stage 3') {
-        sh 'docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'
-        sh 'docker run -d -p 80:80  yoni_site'
+        sh 'docker run -d -p 80:80  yoni_site:"${commit_id}"'
     } 
 
 }
