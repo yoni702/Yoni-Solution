@@ -10,6 +10,7 @@ node (label: 'slave'){
     stage('1 - create 10 files with text') {
         sh 'sudo rm -rf text-files/'
         sh 'sudo mkdir text-files'
+        sh 'sudo chmod 777 text-files'
         for (int i = 1; i < 11; i++) {
             writeFile file: "text-files/file${i}.txt", text: "Random sample text."
         }
