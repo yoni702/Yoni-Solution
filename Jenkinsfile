@@ -45,7 +45,7 @@ node (label: 'slave'){
             echo 'Exception occurred: ' + e.toString()
         }
         //create a volume
-        sh 'sudo docker volume create --name Hacker-Volume --opt type=none --opt device=${textpath} --opt o=bind'
+        sh 'sudo docker volume create --name Hacker-Volume --opt type=nfs --opt device=${textpath} --opt o=bind'
         sh 'docker build -t yoni_site .'
     
     }  
