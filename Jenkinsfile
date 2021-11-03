@@ -1,4 +1,5 @@
 node (label: 'slave'){
+    def workspace = WORKSPACE
     def commit_id
     //To be able to take the tag version
     stage('Prepare') {
