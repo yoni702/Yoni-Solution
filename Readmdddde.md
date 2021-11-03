@@ -32,6 +32,20 @@ On master run (All the commande are  in onMaster.sh)
     ans save 
 
 ---------------------------------------------------------------------------------------
+                              INSTALL JOB Dsl PLUGIN
+---------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------
                         CONFIGURATION OF JENKINS PIPELINE
 ---------------------------------------------------------------------------------------
 
+-new item enter the name: "yonipipeline" (Important it will be hardcoded in the Jenkinsfile)
+-choose pipeline 
+
+enter the configuration of the pipeline 
+-Go Down to "Build Triggers" section and choose "Poll SCM" and paste
+-Go Down to "Pipeline" section and choose "Pipeline script from SCM"
+-Choose GIT and paste the link "https://github.com/yoni702/Yoni-Solution"
+-Go Down to "Script Path" section and paste "Jenkinsfile"
+-Click Apply

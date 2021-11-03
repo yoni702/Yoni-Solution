@@ -49,7 +49,7 @@ node (label: 'slave'){
     }  
     //TO-DO :Extract the path to variable
     stage('5 - Run container with files from Stage 3') {
-        sh 'sudo docker run -d -p 80:80 --name=yoni_site -v /home/ec2-user/jenkins/workspace/n3/text-files:/var/www/html yoni_site'
+        sh 'sudo docker run -d -p 80:80 --name=yoni_site -v /home/ec2-user/jenkins/workspace/yonipipeline/text-files:/var/www/html yoni_site'
     } 
 
 
