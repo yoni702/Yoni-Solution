@@ -1,6 +1,6 @@
 node (label: 'slave'){
     def workspace =  env.WORKSPACE
-    def textpath = env.WORKSPACE/text-files
+    def textpath = env.WORKSPACE + '/text-files'
     def commit_id
     //To be able to take the tag version
     stage('Prepare') {
