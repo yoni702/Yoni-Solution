@@ -49,7 +49,7 @@ node (label: 'slave'){
     //TO-DO :Need to mount  volume 
     stage('5 - Run container with files from Stage 3') {
         sh 'sudo mkdir -p /home/ec2-user/html/'
-        sh 'docker run -d -p 80:80 --name yoni_site --mount source=my_hackeru_volume,target=/var/www/html/ yoni_site'
+        sh 'docker run -d -p 80:80 --name yoni_site --mount source=my_hackeru_volume,target=/home/ec2-user/html/ yoni_site'
         // sh 'docker run -d -p 80:80 --name=yoni_site  --mount source=my_test_volume,destination=/var/www/html,readonly  yoni_site'
     } 
 
