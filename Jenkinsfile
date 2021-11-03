@@ -36,8 +36,7 @@ node (label: 'slave'){
     stage('5 - Run container with files from Stage 3') {
         //create a volume
         sh 'docker volume create --name my_test_volume --opt type=none --opt device=/home/devops/docker/text-files --opt o=bind'
-        sh 'docker run -d -p 80:80  yoni_site'
-        sh 'docker run -d \-p 80:80\ --name=yoni_site \ --mount source=my_test_volume,destination=/var/www/html,readonly \ yoni_site'
+        sh 'docker run -d -p 80:80 --name=yoni_site  --mount source=my_test_volume,destination=/var/www/html,readonly  yoni_site'
     } 
 
 }
