@@ -53,7 +53,7 @@ node (label: 'slave'){
     stage('5 - Run container with files from Stage 3') {
         sh 'sudo mkdir -p /var/www/html/'
         //sh 'sudo docker run -d -p 80:80 --name=yoni_site  --mount source=hacker_volume,target=/home/ec2-user/html yoni_site'
-        sh 'sudo docker run -d -p 80:80 --name=yoni_site -v --opt device=${textpath}:/home/ec2-user/html yoni_site'
+        sh 'sudo docker run -d -p 80:80 --name=yoni_site -v "${textpath}":/home/ec2-user/html yoni_site'
     //sh 'docker run -d -p 80:80 --name yoni_site --mount source=volume,destination=/var/www/html yoni_site'
      // sh 'docker run -d -p 80:80 --name=yoni_site --mount source=my_test_volume,target=/var/www/html,readonly  yoni_site'
     } 
