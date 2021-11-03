@@ -22,7 +22,6 @@ sudo docker run -p 11011:8080 --name=jenkins-master jenkins/jenkins
 
 
 # 005-SSH-KEYGEN on Slave
-ssh-keygen -t rsa -N "" -f /home/ec2-user/.ssh/id_rsa
 cd .ssh
-cat id_rsa.pub > authorized_keys
+# cat candidate-test.pem from your local workstation id_rsa.pub > authorized_keys
 chmod 700 authorized_keys
