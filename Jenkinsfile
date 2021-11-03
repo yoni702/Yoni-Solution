@@ -40,13 +40,13 @@ node (label: 'slave'){
             echo 'Exception occurred: ' + e.toString()
         }
         try {
-            sh 'docker volume rm volume'
+            sh 'docker volume rm Hacker-Volume'
         } catch (Exception e) {
             echo 'Exception occurred: ' + e.toString()
         }
         //create a volume
         
-        sh 'sudo docker volume create --name=volume --opt type=none --opt device=${textpath} --opt o=bind'
+        sh 'sudo docker volume create --name Hacker-Volume --opt type=none --opt device=${textpath} --opt o=bind'
         //sh 'docker volume create --name volume --opt type=none --opt device=text-files/ --opt o=bind'
         sh 'docker build -t yoni_site .'
     
@@ -54,7 +54,7 @@ node (label: 'slave'){
     //TO-DO :Need to mount  volume 
     stage('5 - Run container with files from Stage 3') {
         sh 'sudo mkdir -p /var/www/html/'
-        sh 'sudo docker run -d -p 80:80 --name=yoni_site  --mount source=volume,target=/var/www/html,readonly yoni_site'
+        sh 'sudo docker run -d -p 80:80 --name=yoni_site  --mount source=Hacker-Volume,target=/var/www/html,readonly yoni_site'
     //sh 'docker run -d -p 80:80 --name yoni_site --mount source=volume,destination=/var/www/html yoni_site'
      // sh 'docker run -d -p 80:80 --name=yoni_site --mount source=my_test_volume,destination=/var/www/html,readonly  yoni_site'
     } 
