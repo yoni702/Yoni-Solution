@@ -48,7 +48,8 @@ node (label: 'slave'){
     }  
     //TO-DO :Need to shutdown older images 
     stage('5 - Run container with files from Stage 3 on Monted Volume') {
-        sh 'docker run -d -p 80:80 --name=yoni_site  --mount source=hackeru_volume,destination=/var/www/html,readonly yoni_site'
+        sh 'mkdir -p /var/www/html'
+        sh 'docker run -d -p 80:80 --name=yoni_site  --mount source=hackeru_volume,destination=/var/www/html/,readonly yoni_site'
 
 
     } 
