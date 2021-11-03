@@ -31,10 +31,6 @@ On master run (All the commande are  in onMaster.sh)
     add credentials 
     ans save 
 
----------------------------------------------------------------------------------------
-                              INSTALL JOB Dsl PLUGIN
----------------------------------------------------------------------------------------
-
 
 ---------------------------------------------------------------------------------------
                         CONFIGURATION OF JENKINS PIPELINE
@@ -44,8 +40,13 @@ On master run (All the commande are  in onMaster.sh)
 -choose pipeline 
 
 enter the configuration of the pipeline 
--Go Down to "Build Triggers" section and choose "Poll SCM" and paste
+-Go Down to "Build Triggers" section and choose "Poll SCM" and paste "H/2 * * * *"
 -Go Down to "Pipeline" section and choose "Pipeline script from SCM"
 -Choose GIT and paste the link "https://github.com/yoni702/Yoni-Solution"
 -Go Down to "Script Path" section and paste "Jenkinsfile"
 -Click Apply
+
+
+---------------------------------------------------------------------------------------
+                        BUILD
+---------------------------------------------------------------------------------------
