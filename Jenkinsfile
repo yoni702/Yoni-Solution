@@ -5,6 +5,7 @@ node (label: 'slave'){
     stage('Prepare') {
         git 'https://github.com/yoni702/Yoni-Solution.git'
         sh "git rev-parse --short HEAD > .git/commit-id"
+        sh "echo '${workspace}'"
         commit_id = readFile('.git/commit-id')
     }
     
