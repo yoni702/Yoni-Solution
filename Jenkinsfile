@@ -45,14 +45,14 @@ node (label: 'slave'){
             echo 'Exception occurred: ' + e.toString()
         }
         //create a volume
-        sh 'sudo docker volume create --name Hacker-Volume --opt type=nfs --opt device=${textpath} --opt o=bind'
+        sh 'sudo docker volume create --name Hacker-Volume --opt type=tmpfs --opt device=${textpath} --opt o=bind --opt o=size=100m'
         sh 'docker build -t yoni_site .'
     
     }  
     //TO-DO :Need to mount  volume 
     stage('5 - Run container with files from Stage 3') {
         sh 'sudo mkdir -p /var/www/html/'
-        sh 'sudo docker run -d -p 80:80 --name=yoni_site  --mount source=Hacker-Volume,destination=/home/ec2-user/html,readonly yoni_site'
+        sh 'sudo docker run -d -p 80:80 --name=yoni_site  --mount source=Hacker-Volume,target=/home/ec2-user/html yoni_site'
     //sh 'docker run -d -p 80:80 --name yoni_site --mount source=volume,destination=/var/www/html yoni_site'
      // sh 'docker run -d -p 80:80 --name=yoni_site --mount source=my_test_volume,target=/var/www/html,readonly  yoni_site'
     } 
