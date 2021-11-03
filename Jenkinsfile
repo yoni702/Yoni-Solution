@@ -1,11 +1,12 @@
 node (label: 'slave'){
     def workspace =  env.WORKSPACE
+    def textPath = '${workspace}/text-files'
     def commit_id
     //To be able to take the tag version
     stage('Prepare') {
         git 'https://github.com/yoni702/Yoni-Solution.git'
         sh "git rev-parse --short HEAD > .git/commit-id"
-        sh "echo '${workspace}'"
+        sh "echo '${textPath}'"
         commit_id = readFile('.git/commit-id')
     }
     
