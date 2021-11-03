@@ -29,9 +29,18 @@ node (label: 'slave'){
     } 
     //TO-DO :Need to add tag to image 
     stage('4 - Build new image based on nginx image') {
-        sh 'docker container stop yoni_site'
-        sh 'docker container rm yoni_site'
-        sh 'docker volume rm hackeru_volume'
+        try {
+            sh 'docker container stop yoni_site'
+            sh 'docker container rm yoni_site'
+            sh 'docker volume rm hackeru_volume'
+        } catch (Exception e) {
+            echo 'Exception occurred: ' + e.toString()
+        }
+        try {
+            sh 'docker volume rm hackeru_volume'
+        } catch (Exception e) {
+            echo 'Exception occurred: ' + e.toString()
+        }
         //create a volume from 'text-files'
         sh 'docker volume create --name hackeru_volume --opt type=none --opt device=/text-files --opt o=bind'
         sh 'docker build -t yoni_site .'
