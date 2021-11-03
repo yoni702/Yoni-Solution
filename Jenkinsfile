@@ -42,7 +42,7 @@ node (label: 'slave'){
             echo 'Exception occurred: ' + e.toString()
         }
         //create a volume
-        sh 'sudo docker volume create --name volume --opt type=none --opt device=/text-files/ --opt o=bind'
+        sh 'sudo docker volume create --name volume --opt type=none --opt device=${HOME}/text-files/ --opt o=bind'
         //sh 'docker volume create --name volume --opt type=none --opt device=text-files/ --opt o=bind'
         sh 'docker build -t yoni_site .'
     
